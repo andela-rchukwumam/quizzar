@@ -42,6 +42,134 @@
   timer = new Countdown ();
   timer.init();
   </script>
+
+     <div id="quiz">
+        <h2 id="ques"></h2>
+        <form id="myQuiz">
+            <p id= a0></p> 
+            <p id= a1></p>
+            <p id= a2></p>
+            <p id= a3></p>
+        </form>
+    </div>
+    <script type="text/javascript">
+//array of questions
+var allQuestions = [
+    {question: "Which of the following is true about Javascript?", choices: ["Java script was developed by Netscape.", "Java script was developed by Microsoft", "It is the same as Jscript", "They serve no purpose at all"], correctAnswer: 0},
+    {question: "Where are cookies actually stored on the hard disk?", choices: ["In the browser!", "Its highly confidential.", "The storage of cookies on the hard disk depends on OS and the browser.", "I have no idea."], correctAnswer: 2},
+    {question: "What boolean operators does JavaScript not support?", choices: ["==", "<=", "!=", "--"], correctAnswer: 3},
+    {question: "Is a javascript script faster than an ASP script?", choices: ["Yes", "No", "I don't know, I'm not the internet", "Not sure"], correctAnswer: 0},
+    {question: "What does isNaN function do?", choices: ["It is a function.", "It is used in dividing a negative number by zero.", "It shows a value", "Determines if the value is a number or not and depending upon the result, it returns true or false"], correctAnswer: 3},
+    {question: "How do you read and write a file using javascript?", choices: ["Call its name", "Using JavaScript extensions", "Cats never pay attention to humans", "Serve some vegetarian food"], correctAnswer: 1},
+    ];
+
+//array length
+var len = allQuestions.length;
+    
+//track current question
+var pos = 0
+
+//track score
+var totalScore = 0;
+ 
+//grab elements
+var question = document.getElementById("ques");
+var submitButton = document.getElementById("nextbutton");
+var firstDiv = document.getElementById("quiz");
+    
+//make question
+function createQuestion() {
+    var currentQuestion = allQuestions[pos].question; 
+    question.innerHTML = currentQuestion;
+}
+
+//make choices
+function createChoices() {
+    for(var i = 0; i < 4; i++) {
+        var choice = document.getElementsByTagName("p")[i];
+        var option = "<input id='ans_" + i + "' type='radio' name='choice' value='" + i + "'";
+        
+        if ( i == allQuestions[pos].userAnswer ) {
+            option += " checked='checked'";   
+        }
+        option +=  ">" + allQuestions[pos].choices[i] 
+               + "</input>";
+        
+        choice.innerHTML = option;
+    }
+}
+
+function collectUserAnswer() {
+    allQuestions[pos].userAnswer = document.querySelector('input[name="choice"]:checked').value; 
+}
+
+//calculate total score
+function calcScore() {
+    var score = 0;
+    for ( var i = 0; i < allQuestions.length; i++ ) {
+        if ( allQuestions[i].userAnswer == allQuestions[i].correctAnswer ) {
+            score++;
+        }
+    }
+    this.totalScore = score;
+
+}
+
+//alert user if no selection has been made
+function displayAlert() {
+     var radios = document.getElementsByTagName("input");
+     if(!radios[0].checked && !radios[1].checked && !radios[2].checked && !radios[3].checked) {
+         alert("Please select an option");
+    }
+}
+
+
+function updateNavigationButtons() {
+    if(pos < len) {
+        createQuestion();
+        createChoices();
+        submitButton.innerHTML = '<input id="next" type="button" name="nextbutton" value="Next Question" onclick="updateNext();"><input id="back" type="button" name="backbutton" value="Previous Question" onclick="updatePrevious();">';
+        
+    }
+    if(pos == len-1) {
+        submitButton.innerHTML = '<input id="submit" type="button" name="submitbutton" value="Submit Quiz" onclick="updateNext();"><input id="back" type="button" name="backbutton" value="Previous Question" onclick="updatePrevious();">';
+    }
+    if(pos == len) {
+        while(firstDiv.hasChildNodes()) {
+            firstDiv.removeChild(firstDiv.lastChild);
+        }
+        submitButton.innerHTML = "Your total score: " + this.totalScore; 
+    }
+}
+
+
+//update when user clicks next question
+function updateNext() {
+    displayAlert();  
+    collectUserAnswer();
+    calcScore();
+    pos++;
+    updateNavigationButtons();
+};
+
+//update when user clicks previous question
+function updatePrevious() {
+    if(pos > 0) {
+        pos--;
+        createQuestion();
+        createChoices();
+    }
+}
+
+//initialize first set of question and choices
+window.onload = createQuestion();
+window.onload = createChoices();
+
+
+    </script>
+    <div id="nextbutton"><input id="back" type="button" name="backbutton" value="Previous Question" onclick="updatePrevious();"><input id="next" type="button" name="nextbutton" value="Next Question" onclick="updateNext();"></div>
+    <div id="submit"><input id="submitter" type="button" name="submitbutton" value ="Check my score!"</div>
+ 
 </body>
 
 <!-- End Document
