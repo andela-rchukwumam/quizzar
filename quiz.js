@@ -46,4 +46,6 @@ Program written by Ruth Chukwumam For the Andela bootcamp class!
 
 
 // Question Section
+//I wanted to put the questions in the javascript section but i was encountering some issues on the console so i 
+//transferred all the questions and the script to run the file on the quiz.html file
 
