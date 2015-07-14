@@ -4,15 +4,21 @@ Program written by Ruth Chukwumam For the Andela bootcamp class!
 */
     //the first code will be the timer code for each question. 
     function Countdown (){
-        this.start_time = "10:00";
+        this.start_time = "00:20";
         this.target_id = "#timer";
         this.name = "timer";
+        this.tickID;
+        this.formSubmitted = false;
+        this.submitForm = function() {
+            this.formSubmitted = true;
+            document.getElementById('submit-button').click();
+        };
     }
     //calling the tick function every second
 
     Countdown.prototype.init = function (){
         this.reset();
-        setInterval(this.name +'.tick()', 1000);
+        this.tickID = setInterval(this.name +'.tick()', 1000);
     }
     //parsing out the start time
 
@@ -24,6 +30,16 @@ Program written by Ruth Chukwumam For the Andela bootcamp class!
     }
 
     Countdown.prototype.tick = function () {
+        if (this.minutes == 0 && this.seconds == 0) {
+            // The timer has expired. Stop the tick.
+            clearInterval(this.tickID);
+
+            // submit the form
+            this.submitForm();
+
+            return;
+        }
+
         if(this.seconds > 0 || this.minutes > 0){
             if(this.seconds == 0){ //if seconds is equals to zero, decrement the minute and reset the second to 59.
                 this.minutes = this.minutes - 1;
