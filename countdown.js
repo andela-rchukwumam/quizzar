@@ -4,7 +4,7 @@ Program written by Ruth Chukwumam For the Andela bootcamp class!
 */
     //the first code will be the timer code for each question. 
     function Countdown (){
-        this.start_time = "00:20";
+        this.start_time = "05:00";
         this.target_id = "#timer";
         this.name = "timer";
         this.tickID;
