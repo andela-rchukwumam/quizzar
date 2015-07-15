@@ -2,6 +2,7 @@ timer = new Countdown ();
   timer.init();
 
   var pos =0, test, test_status, question, notchecked, choices, chA, chB, chC, chD, correct = 0;
+  var answered = 0;
   
   var questions = [
       [ "Which of the following is true about Javascript?", "Java script was developed by Netscape.", "Java script was developed by Microsoft", "It is the same as Jscript", "They serve no purpose at all", "A"],
@@ -24,7 +25,11 @@ timer = new Countdown ();
     if (pos >= questions.length) {
       _("test_status").innerHTML = "Test Completed";
       test.innerHTML = "<h2> You got " + correct + " of " + questions.length + " questions correct. </h2>";
-      unchecked.innerHTML = "<h5> You have " + notchecked + "questions not answered. </h5>" //just added.
+
+      var numQuestions = questions.length;
+      var unAnswered = numQuestions - answered;
+
+      unchecked.innerHTML = "<h5> You have " + unAnswered + " questions not answered. </h5>" //just added.
 
       // to display the answers for the ones gotten wrong.
       var wrongAnswers = "";
@@ -72,7 +77,7 @@ timer = new Countdown ();
       renderQuestion();
       return;
     }
-      var notchecked = 0;
+      //var notchecked = 0;
       var choice;
 
       choices = document.getElementsByName("choices");
@@ -85,9 +90,9 @@ timer = new Countdown ();
            */
            break;
         }
-        else{
-          notchecked += 1;//if no answer was checked display 
-        }  
+        // else{
+        //   notchecked += 1;//if no answer was checked display 
+        // }  
       }
 
       if (choice == null) {
@@ -104,7 +109,7 @@ timer = new Countdown ();
       }
 
       
-
+      answered++;
 
       pos++; //increments the pos by one which renders the next question
       renderQuestion();//the test questions keep coming in sequence
