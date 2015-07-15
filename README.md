@@ -1,5 +1,6 @@
 === Quizzar ===
-Contributors: Ruth, Emeka Ashikodi
+
+Contributors: Ruth Chukwumam, Emeka Ashikodi
 
 App link: http://ruthchukwumam.github.io/quizzar
 
