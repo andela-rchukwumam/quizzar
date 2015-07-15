@@ -1,7 +1,7 @@
 timer = new Countdown ();
   timer.init();
 
-  var pos =0, test, test_status, question, choices, chA, chB, chC, chD, correct =0;
+  var pos =0, test, test_status, question, notchecked, choices, chA, chB, chC, chD, correct = 0;
   
   var questions = [
       [ "Which of the following is true about Javascript?", "Java script was developed by Netscape.", "Java script was developed by Microsoft", "It is the same as Jscript", "They serve no purpose at all", "A"],
@@ -24,11 +24,12 @@ timer = new Countdown ();
     if (pos >= questions.length) {
       _("test_status").innerHTML = "Test Completed";
       test.innerHTML = "<h2> You got " + correct + " of " + questions.length + " questions correct. </h2>";
+      unchecked.innerHTML = "<h5> You have " + notchecked + "questions not answered. </h5>" //just added.
 
-      // Display the answers for the ones gotten wrong.
+      // to display the answers for the ones gotten wrong.
       var wrongAnswers = "";
 
-      // go through the incorrectQuestions array to get each of the wrong questions and its answer
+      //to go through the incorrectQuestions array to get each of the wrong questions and its answers
       for (var i = 0; i < incorrectQuestions.length; i++) {
         var q = incorrectQuestions[i];
         var questionString = q[0];
@@ -71,9 +72,9 @@ timer = new Countdown ();
       renderQuestion();
       return;
     }
-
+      var notchecked = 0;
       var choice;
-      // if (document.getElementsByName("choices").checked) {
+
       choices = document.getElementsByName("choices");
       for (var i = 0; i < choices.length; i++) {
         if (choices[i].checked){
@@ -83,6 +84,9 @@ timer = new Countdown ();
            * no need to continue the loop.
            */
            break;
+        }
+        else{
+          notchecked += 1;//if no answer was checked display 
         }  
       }
 
@@ -98,6 +102,9 @@ timer = new Countdown ();
         // The answer is incorrect. Keep the incorrect question.
         incorrectQuestions.push(questions[pos]);
       }
+
+      
+
 
       pos++; //increments the pos by one which renders the next question
       renderQuestion();//the test questions keep coming in sequence
