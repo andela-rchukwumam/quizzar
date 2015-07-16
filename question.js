@@ -9,11 +9,11 @@ timer = new Countdown ();
   var answered = 0;
   
   var questions = [
-      [ "Which of the following is true about Javascript?", "Java script was developed by Netscape.", "Java script was developed by Microsoft", "It is the same as Jscript", "They serve no purpose at all", "A"],
-      [ "Where are cookies actually stored on the hard disk?", "In the browser!", "Its highly confidential.", "The storage of cookies on the hard disk depends on OS and the browser.", "I have no idea.", "C"],
-      [ "What Boolean operators does JavaScript not support?", "==", "<=", "!=", "--", "D"],
-      [ "Is a Javascript script faster than an ASP script?", "Yes", "No", "I don't know, I'm not the internet", "Not sure", "A"],
-      [ "What does isNaN function do?", "It is a function.", "It is used in dividing a negative number by zero.", "It shows a value", "Determines if the value is a number or not and depending upon the result, it returns true or false", "D"]
+    [ "Which of the following is true about Javascript?", "Java script was developed by Netscape.", "Java script was developed by Microsoft", "It is the same as Jscript", "They serve no purpose at all", "A"],
+    [ "Where are cookies actually stored on the hard disk?", "In the browser!", "Its highly confidential.", "The storage of cookies on the hard disk depends on OS and the browser.", "I have no idea.", "C"],
+    [ "What Boolean operators does JavaScript not support?", "==", "<=", "!=", "--", "D"],
+    [ "Is a Javascript script faster than an ASP script?", "Yes", "No", "I don't know, I'm not the internet", "Not sure", "A"],
+    [ "What does isNaN function do?", "It is a function.", "It is used in dividing a negative number by zero.", "It shows a value", "Determines if the value is a number or not and depending upon the result, it returns true or false", "D"]
   ];
 
   var incorrectQuestions = [];
