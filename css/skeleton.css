@@ -423,3 +423,13 @@ there.
 div#test{
   border: #000 1px solid;  padding:10px 40px 40px 40px;
 }
+
+/*Footer*/
+.footer, .push {
+height: 4em;
+display: block;
+position:fixed;
+bottom: 0px;
+width: 100%;
+text-align: center;
+}
